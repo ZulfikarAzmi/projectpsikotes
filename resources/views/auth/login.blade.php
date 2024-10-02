@@ -1,47 +1,69 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Login Admin</title>
+    @vite('resources/css/app.css')
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-200 relative">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <div class="logo absolute top-8 left-10">
+        <img src="{{ asset('Assets/img/logo.png') }}" alt="Logo E-Learning" class="w-36" />
+    </div>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    <div class="container flex w-full h-full max-w-full shadow-lg">
+        <div class="left-section w-1/2 bg-white flex justify-center items-center p-20">
+            <img src="{{ asset('Assets/img/exam.png') }}" alt="E-Learning" class="w-full h-auto" />
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <div class="right-section w-1/2 p-20 bg-white flex flex-col justify-center">
+            <h2 class="text-center text-2xl mb-8 font-bold text-shadow">Login</h2>
+            <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                <div class="input-group flex items-center border-b border-gray-300 pb-2">
+                    <i class="fas fa-envelope text-gray-400 mr-3"></i>
+                    <input
+                        id="email"
+                        type="text"
+                        name="email"
+                        :value="old('email')"
+                        placeholder="Email"
+                        required
+                        autofocus
+                        class="w-full p-2 focus:outline-none text-gray-700"
+                    />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <div class="input-group flex items-center border-b border-gray-300 pb-2">
+                    <i class="fas fa-lock text-gray-400 mr-3"></i>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        class="w-full p-2 focus:outline-none text-gray-700"
+                    />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+
+                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded hover:bg-blue-600">Login</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Belum Memiliki Akun?</a>
+            </div>
         </div>
+    </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <div class="footer absolute bottom-2 w-full text-center text-gray-700 text-sm">
+        CBTExam©2024
+    </div>
+    @vite('resources/js/app.js')
+</body>
+</html>
