@@ -4,25 +4,31 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('subjects', function (Blueprint $table) {
-            $table->bigIncrements('id_subject'); // ID unik untuk subject
-            $table->string('name', 100);         // Nama subject
-            $table->timestamps();
+            $table->id(); // Primary key, auto-increment
+            $table->string('subject_name'); // Nama subjek ujian
+            $table->text('description')->nullable(); // Deskripsi subjek, nullable
+            $table->integer('timer')->default(0); // Timer dalam detik, default 0
+            $table->timestamps(); // created_at dan updated_at otomatis
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('subjects');
     }
-};
+}

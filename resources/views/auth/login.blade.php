@@ -55,9 +55,6 @@
                 <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded hover:bg-blue-600">Login</button>
             </form>
 
-            <div class="text-center mt-4">
-                <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Belum Memiliki Akun?</a>
-            </div>
         </div>
     </div>
 
