@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->bigIncrements('id_client'); // ID unik untuk client
-            $table->string('name', 100);        // Nama client
-            $table->timestamps();                // Timestamp untuk created_at dan updated_at
+        Schema::create('subjects', function (Blueprint $table) {
+            $table->increments('id_subject'); // Primary key
+            $table->string('name', 100); // Nama Subjek
+            $table->integer('timer'); // Durasi Timer dalam detik
+            $table->timestamps(); // Created at dan updated at
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('subjects');
     }
 };

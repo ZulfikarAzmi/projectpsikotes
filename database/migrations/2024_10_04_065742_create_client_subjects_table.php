@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('client_subjects', function (Blueprint $table) {
-            $table->bigIncrements('id'); // ID unik untuk relasi
-            $table->unsignedBigInteger('client_id'); // ID client
-            $table->unsignedBigInteger('subject_id'); // ID subject
-            $table->timestamps();
+            $table->increments('id'); // Primary key
+            $table->unsignedInteger('client_id'); // Foreign Key dari clients
+            $table->unsignedInteger('subject_id'); // Foreign Key dari subjects
+            $table->timestamps(); // Created at dan updated at
 
-            // Mendefinisikan foreign key
+            // Menambahkan constraint foreign key
             $table->foreign('client_id')->references('id_client')->on('clients')->onDelete('cascade');
             $table->foreign('subject_id')->references('id_subject')->on('subjects')->onDelete('cascade');
         });
