@@ -48,7 +48,7 @@ export default function PopUpSubject(props) {
               value={namaUjian}
               onChange={(e) => setNamaUjian(e.target.value)}
               className="w-full p-2 border rounded-lg bg-gray-200"
-              placeholder="Nama Ujian"
+              placeholder="Ujian Pertama"
             />
           </div>
 

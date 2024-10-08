@@ -4,6 +4,7 @@ import { Login } from "./pages/login";
 import Soal from "./pages/soal";
 import PrivateRoute from "./utils/private-route";
 import TabelSoal from "./pages/tabel_soal";
+import Ujian from "./pages/ujian";
 
 function app() {
   return(
@@ -15,6 +16,7 @@ function app() {
       <Route path ="/" element = {<Navigate to ="/login"/>}/>
       <Route path ="/login" element = {<Login/>}/>
       <Route path ="/tabel_soal" element ={<TabelSoal/>}/>
+      <Route path ="/ujian" element ={<Ujian/>}/>
     </Routes>
    </BrowserRouter>
   )

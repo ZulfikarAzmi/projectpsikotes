@@ -2,6 +2,7 @@ import { Button, Card } from "flowbite-react";
 import React, { useState } from 'react';
 import {Plus} from "lucide-react"
 import PopUpSubject from "./popUp_subject";
+import { Link } from "react-router-dom";
 
 
 export default function CardExam() {
@@ -17,7 +18,7 @@ export default function CardExam() {
     <>
       <div className='flex'>
         {/* Card 1 */}
-        <Card className="max-w-sm my-10 mr-10 relative rounded-3xl w-96 h-auto border-2 ml-10"> 
+        <Card className="max-w-sm max-h-80 my-10 mr-10 relative rounded-3xl w-96 h-auto border-2 ml-10"> 
           {/* Tombol elipsis */}
           <div className="absolute top-9 right-5">
             <button
@@ -71,14 +72,18 @@ export default function CardExam() {
             Waktu : 60 Menit <br/>
             Jumlah Soal : 30
           </p>
-          <Button className='bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800'>
-            Kelola
-          </Button>
+
+          <Link to="/tabel_soal" replace>
+            <Button className='bg-black text-white px-4 py-2 w-80 rounded-lg hover:bg-gray-800'>
+              Kelola
+            </Button>
+          </Link>
+          
         </Card>
 
 
         {/* Card 2 */}
-        <Card className="max-w-sm my-10 mr-10 relative rounded-3xl w-96 h-auto border-2 ml-5"> {/* Tambahkan relative */}
+        <Card className="max-w-sm max-h-80 my-10 mr-10 relative rounded-3xl w-96 h-auto border-2 ml-5"> {/* Tambahkan relative */}
           <Plus size={96} className="ml-32 my-8"/>
           <Button onClick={() => setbuttonPopUp(true)} className='bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800'>
             Tambah Ujian

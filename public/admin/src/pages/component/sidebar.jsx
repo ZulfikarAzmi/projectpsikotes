@@ -20,7 +20,7 @@ export default function Sidebar({ children }) {
 
     
     <aside className=" h-max">
-      <nav className="h-[680px] inline-flex flex-col bg-blue-400 border-r shadow-sm ml-6 mt-6 rounded-xl">
+      <nav className="h-[680px] inline-flex flex-col bg-blue-400 border-r shadow-sm ml-6 mt-6 rounded-xl ">
         <div className="p-4 pb-2 flex justify-between items-center">
           
           <button
@@ -46,6 +46,7 @@ export default function Sidebar({ children }) {
           `}
           >
             <div className="leading-4 h-4 ">
+              
               <button onclick={handleLogout}>
               <h4 className="font-semibold">Logout</h4>
               </button>
@@ -97,7 +98,7 @@ export function SidebarItem({ icon, text, active, alert }) {
           absolute left-full rounded-md px-2 py-1 ml-6
           bg-indigo-100 text-black text-sm
           invisible opacity-20 -translate-x-3 transition-all
-          group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
+          group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 z-10
       `}
         >
           {text}
