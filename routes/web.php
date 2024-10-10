@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CodeController;
+use App\Http\Controllers\PenggunaController;
+
+Route::post('/check-code', [CodeController::class, 'checkCode']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,5 +24,10 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/create-code', [ClientController::class, 'store'])->name('create.code');
 
+Route::get('/input-data-diri', function () {
+    return view('input-data-diri');
+});
+
+Route::post('/pengguna/store', [PenggunaController::class, 'store']);
 
 require __DIR__.'/auth.php';
