@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Tabel Soal</title>
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center h-screen relative">
+
+    <button class='absolute top-5 left-8'>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M15 6l-6 6l6 6" />
+        </svg>
+    </button>
+
+    <h1 class='absolute top-6 text-5xl font-extrabold font-inter'>Soal</h1>
+
+    <div class="overflow-x-auto w-full h-auto mx-10 my-10 max-h-[450px] overflow-y-scroll">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="w-20 text-center">
+                        <button class='text-red-700'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M6 7v-2a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v2" />
+                            <path d="M4 7h16" />
+                            <path d="M10 11v6" />
+                            <path d="M14 11v6" />
+                            <path d="M5 7v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-14" />
+                        </svg></button>
+                    </th>
+                    <th class="w-20 text-center">No</th>
+                    <th class="text-center w-64">Soal</th>
+                    <th class="text-center w-96">Jawaban</th>
+                    <th class="text-center w-64">Kunci</th>
+                    <th class="flex items-center text-center w-32">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y">
+                <tr class="bg-white">
+                    <td><input type='checkbox' class='rounded'/></td>
+                    <td class="text-center">1</td>
+                    <td class='text-center'>Soal 1</td>
+                    <td class='text-center'>Jawaban 1</td>
+                    <td class='text-center'>Kunci Jawaban 1</td>
+                    <td class='flex flex-col w-24 items-center'>
+                        <button class="btn btn-secondary">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </td>
+                </tr>
+                <!-- Repeat similar rows as needed -->
+            </tbody>
+        </table>
+
+        <button class='flex w-40 h-10 px-2 bg-gray-300 items-center justify-center rounded-xl bottom-6 absolute'>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 5v14" />
+                <path d="M5 12h14" />
+            </svg>
+            Tambahkan Soal
+        </button>
+
+        <button type="submit" class='flex w-32 h-10 px-2 bg-gray-300 items-center justify-center rounded-xl bottom-6 right-10 absolute'>
+            Selesai
+        </button>
+    </div>
+    <script src="https://unpkg.com/@heroicons/vue@1.0.6/outline/pencil.svg"></script>
+</body>
+</html>

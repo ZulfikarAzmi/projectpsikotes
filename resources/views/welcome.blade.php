@@ -21,7 +21,7 @@
 
         <div class="right-section w-1/2 p-20 bg-white flex flex-col justify-center">
             <h2 class="text-center text-2xl mb-8 font-bold text-shadow">Masuk</h2>
-            <form id="loginForm" class="space-y-6" method="POST" action="{{ route('login') }}">
+            <form id="loginForm" class="space-y-6" method="POST" action="">
                 @csrf
                 <div class="input-group flex items-center border-b border-gray-300 pb-2">
                     <i class="fas fa-lock text-gray-400 mr-3"></i>
@@ -37,7 +37,7 @@
 
 
 
-                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded hover:bg-blue-600">Masuk</button>
+                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded-3xl hover:bg-blue-600">Masuk</button>
             </form>
         </div>
     </div>

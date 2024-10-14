@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PopUp Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Button to open the modal -->
+    <button id="openModal" class="btn btn-primary">Open Modal</button>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div class="relative p-8 w-full max-w-lg bg-white rounded-2xl">
+            <form class="flex flex-col">
+                <label for="soal" class="mt-4 text-lg">Soal</label>
+                <input type="file" id="soal" class="mt-1 form-control" multiple/>
+
+                <label for="jawaban" class="mt-4 text-lg">Jawaban</label>
+                <input type="file" id="jawaban" class="mt-1 form-control" multiple/>
+
+                <label for="kunci" class="mt-4 text-lg">Kunci</label>
+                <input type="file" id="kunci" class="mt-1 form-control" multiple/>
+            </form>
+
+            <div class="flex space-x-72">
+                <button id="cancelButton" class="bottom-4 mt-6 bg-gray-400 w-24 h-8 text-black rounded">Batal</button>
+                <button type="submit" class="bottom-4 mt-6 bg-black w-24 text-white rounded">Tambah</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const openModalButton = document.getElementById('openModal');
+        const cancelButton = document.getElementById('cancelButton');
+
+        openModalButton.onclick = function() {
+            modal.classList.remove('hidden');
+        };
+
+        cancelButton.onclick = function() {
+            modal.classList.add('hidden');
+        };
+    </script>
+</body>
+</html>

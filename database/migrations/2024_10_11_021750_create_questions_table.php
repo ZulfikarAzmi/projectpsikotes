@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id_question'); // ID unik untuk pertanyaan
-            $table->string('question_text');       // Teks pertanyaan
-            $table->unsignedBigInteger('subject_id'); // ID subject sebagai foreign key
+            $table->id(); // Primary key
+            $table->unsignedBigInteger('subject_id');
+            $table->string('question_text', 255)->nullable();
+            $table->string('question_image', 255)->nullable();
+            $table->string('answer_image', 255)->nullable();
             $table->timestamps();
 
-            // Foreign key constraint
-            $table->foreign('subject_id')->references('id_subject')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
