@@ -5,3 +5,9 @@
 @tailwind utilities;
 
 
+<<<<<<< HEAD
+=======
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+>>>>>>> eecb4bb862553de14765ab5cb1c9c4febb6e35e6
