@@ -52,9 +52,12 @@
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
-                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded hover:bg-blue-600">Login</button>
+                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded-2xl hover:bg-blue-600">Login</button>
             </form>
+<<<<<<< HEAD
+=======
 
+>>>>>>> eecb4bb862553de14765ab5cb1c9c4febb6e35e6
         </div>
     </div>
 

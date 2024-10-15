@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar with Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .sidebar-expanded {
+            width: 16rem;
+        }
+        .sidebar-collapsed {
+            width: 4rem;
+        }
+        .toggle-arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex">
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="bg-blue-400 text-white h-[600px] sidebar-collapsed transition-all duration-300 ease-in-out flex flex-col shadow-sm ml-6 mt-6 rounded-xl">
+
+        <!-- Toggle Button -->
+        <div class="p-4 pb-2 flex justify-between items-center">
+            <button id="toggleButton" class="text-white hover:text-gray-400 focus:outline-none">
+                <i id="arrowIcon" class="bi bi-chevron-right h-6 w-6 transition-transform duration-300"></i>
+            </button>
+        </div>
+
+        <!-- Navbar Items -->
+        <ul class="flex-1 px-3 mt-10">
+            <!-- Dashboard Item -->
+            <li class="relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group hover:bg-indigo-50 text-white">
+                <i class="bi bi-file-earmark-text h-6 w-6"></i>
+                <span class="overflow-hidden transition-all w-0 ml-3" id="dashboard-text">Dashboard</span>
+            </li>
+
+            <!-- Profile Item -->
+            <li class="relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group hover:bg-indigo-50 text-white">
+                <i class="bi bi-list-task h-6 w-6"></i>
+                <span class="overflow-hidden transition-all w-0 ml-3" id="profile-text">Profile</span>
+            </li>
+
+            <!-- Settings Item -->
+            <li class="relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group hover:bg-indigo-50 text-white">
+                <i class="bi bi-gear h-6 w-6"></i>
+                <span class="overflow-hidden transition-all w-0 ml-3" id="settings-text">Settings</span>
+            </li>
+        </ul>
+
+        <!-- Logout Button -->
+        <div class="border-t flex p-3 justify-center">
+            <button class="text-white">
+                <i class="bi bi-box-arrow-right h-6 w-6"></i>
+            </button>
+            <div class="leading-4 h-4 overflow-hidden transition-all w-0 ml-3" id="logout-text">
+                <h4 class="font-semibold text-white">Logout</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex justify-start my-10 mx-10 space-x-5">
+        <div class="flex justify-start my-10 mx-10 space-x-5">
+            <!-- Card 1 -->
+            <div class="max-w-sm relative rounded-3xl w-96 h-[280px] border-2 shadow-lg">
+                <!-- Ellipsis Button -->
+                <div class="absolute top-4 right-4">
+                    <button class="text-gray-500 hover:text-gray-700" onclick="toggleDropdown()">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 5.25a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 5.25a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 5.25a1.5 1.5 0 110 3 1.5 1.5 0 010-3z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg">
+                        <ul>
+                            <li>
+                                <button class="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">Edit</button>
+                            </li>
+                            <li>
+                                <button class="block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100">Hapus</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card Content -->
+                <h5 class="text-4xl font-bold tracking-tight text-gray-900 dark:text-black mt-6 ml-6">Ujian 1</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400 my-4 ml-6">Waktu: 60 Menit <br />Jumlah Soal: 50</p>
+
+                <!-- Manage Button -->
+                <div class="flex justify-center my-6">
+                    <a href="/tabel_soal" class="bg-black text-white px-4 py-2 mt-10 w-80 rounded-2xl text-center hover:bg-gray-800">Kelola</a>
+                </div>
+            </div>
+
+            <!-- Card 2 (Add New Exam) -->
+            <div class="max-w-sm relative rounded-3xl w-96 h-[280px] border-2 shadow-lg flex flex-col items-center justify-center">
+                <svg class="w-24 h-24 mb-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <button class="bg-black text-white px-4 py-2 w-80 mt-6 rounded-2xl text-center hover:bg-gray-800">Tambah Ujian</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+        const arrowIcon = document.getElementById('arrowIcon');
+
+        // Text elements to show/hide
+        const dashboardText = document.getElementById('dashboard-text');
+        const profileText = document.getElementById('profile-text');
+        const settingsText = document.getElementById('settings-text');
+        const logoutText = document.getElementById('logout-text');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-expanded');
+            sidebar.classList.toggle('sidebar-collapsed');
+
+            if (sidebar.classList.contains('sidebar-expanded')) {
+                arrowIcon.classList.add('toggle-arrow');
+                arrowIcon.classList.replace('bi-chevron-right', 'bi-chevron-left');
+
+                // Show text when expanded
+                dashboardText.classList.remove('w-0');
+                dashboardText.classList.add('w-42', 'ml-3');
+
+                profileText.classList.remove('w-0');
+                profileText.classList.add('w-42', 'ml-3');
+
+                settingsText.classList.remove('w-0');
+                settingsText.classList.add('w-42', 'ml-3');
+
+                logoutText.classList.remove('w-0');
+                logoutText.classList.add('w-42', 'ml-3');
+
+            } else {
+                arrowIcon.classList.remove('toggle-arrow');
+                arrowIcon.classList.replace('bi-chevron-left', 'bi-chevron-right');
+
+                // Hide text when collapsed
+                dashboardText.classList.add('w-0');
+                dashboardText.classList.remove('w-42', 'ml-3');
+
+                profileText.classList.add('w-0');
+                profileText.classList.remove('w-42', 'ml-3');
+
+                settingsText.classList.add('w-0');
+                settingsText.classList.remove('w-42', 'ml-3');
+
+                logoutText.classList.add('w-0');
+                logoutText.classList.remove('w-42', 'ml-3');
+            }
+        });
+
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>

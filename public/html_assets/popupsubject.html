@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Pop Up Form</title>
+</head>
+<body class="bg-gray-100">
+
+    <div class="fixed inset-0 w-full h-screen bg-black bg-opacity-20 flex justify-center items-center z-50">
+        <div class="relative p-8 w-full max-w-lg bg-white rounded-2xl">
+
+            <button class="absolute top-4 right-4" onclick="closeModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <form id="popupForm">
+                <div class="mb-4">
+                    <label class="block mb-2 text-left">Nama Ujian</label>
+                    <input
+                        type="text"
+                        class="w-full p-2 border rounded-lg bg-gray-200"
+                        placeholder="Ujian Pertama" required
+                    />
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2 text-left">Set Timer</label>
+                    <div class="flex space-x-2">
+                        <input
+                            type="text"
+                            class="w-12 p-2 border rounded-lg bg-gray-200 text-center"
+                            placeholder="HH" required
+                        />
+                        <span>:</span>
+                        <input
+                            type="text"
+                            class="w-12 p-2 border rounded-lg bg-gray-200 text-center"
+                            placeholder="MM" required
+                        />
+                        <span>:</span>
+                        <input
+                            type="text"
+                            class="w-12 p-2 border rounded-lg bg-gray-200 text-center"
+                            placeholder="SS" required
+                        />
+                    </div>
+                </div>
+
+                <p id="errorMessage" class="text-red-500 text-sm mb-4 hidden"></p>
+
+                <button
+                    type="submit"
+                    class="w-32 bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 ml-40"
+                >
+                    Buat
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const closeModal = () => {
+            // Function to close the modal, implement your logic here
+            document.querySelector('.fixed').style.display = 'none';
+        };
+
+        document.getElementById('popupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const timerInputs = this.querySelectorAll('input[type="text"]');
+            let isValid = true;
+            let errorMessage = '';
+
+            timerInputs.forEach(input => {
+                if (isNaN(input.value) || input.value.trim() === '') {
+                    isValid = false;
+                    errorMessage = 'Set Timer harus berupa angka dan tidak boleh kosong.';
+                }
+            });
+
+            if (!isValid) {
+                document.getElementById('errorMessage').innerText = errorMessage;
+                document.getElementById('errorMessage').classList.remove('hidden');
+            } else {
+                document.getElementById('errorMessage').innerText = '';
+                console.log('Form Submitted');
+                // Add logic for form submission here
+            }
+        });
+    </script>
+</body>
+</html>

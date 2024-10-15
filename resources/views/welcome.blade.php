@@ -1,3 +1,8 @@
+@if(session('error'))
+    <script>
+        alert('{{ session('error') }}');
+    </script>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,14 +26,18 @@
 
         <div class="right-section w-1/2 p-20 bg-white flex flex-col justify-center">
             <h2 class="text-center text-2xl mb-8 font-bold text-shadow">Masuk</h2>
-            <form id="loginForm" class="space-y-6" method="POST" action="{{ route('login') }}">
+<<<<<<< HEAD
+            <form id="loginForm" class="space-y-6" method="POST" action="">
+=======
+            <form action="/check-code" method="POST">
+>>>>>>> eecb4bb862553de14765ab5cb1c9c4febb6e35e6
                 @csrf
                 <div class="input-group flex items-center border-b border-gray-300 pb-2">
                     <i class="fas fa-lock text-gray-400 mr-3"></i>
                     <input
                         type="text"
                         id="code"
-                        name="code"
+                        name="kode"
                         placeholder="Masukan Kode Ujian"
                         required
                         class="w-full p-2 focus:outline-none text-gray-700"
@@ -37,7 +46,7 @@
 
 
 
-                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded hover:bg-blue-600">Masuk</button>
+                <button type="submit" class="btn w-full bg-blue-500 text-white py-4 rounded-3xl hover:bg-blue-600">Masuk</button>
             </form>
         </div>
     </div>
