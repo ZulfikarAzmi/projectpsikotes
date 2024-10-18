@@ -46,7 +46,6 @@ public function store(Request $request)
     return redirect()->back()->with('success', 'Subject created successfully.');
 }
 
-
 public function update(Request $request, $id)
 {
     $subject = Subject::find($id);
