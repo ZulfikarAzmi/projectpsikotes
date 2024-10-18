@@ -6,7 +6,8 @@ import Dashboard from './components/dashboard';
 import Soal from './components/soal'; 
 import QuestionComponent from './components/questioncomponent'; 
 import ExamDone from './components/examdone'; 
-
+import Ujian from './components/ujian';
+import Results from './components/results';
 
 const App = () => {
     return (
@@ -18,6 +19,8 @@ const App = () => {
                 <Route path="/soal" element={<Soal/>}/>
                 <Route path="/questioncomponent" element={<QuestionComponent/>}/>
                 <Route path="/examdone" element={<ExamDone/>}/>
+                <Route path="/ujian" element={<Ujian/>}/>
+                <Route path="/results" element={<Results/>}/>
             </Routes>
         </Router>
     );
