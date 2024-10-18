@@ -26,11 +26,10 @@
 
         <div class="right-section w-1/2 p-20 bg-white flex flex-col justify-center">
             <h2 class="text-center text-2xl mb-8 font-bold text-shadow">Masuk</h2>
-<<<<<<< HEAD
+
             <form id="loginForm" class="space-y-6" method="POST" action="">
-=======
+
             <form action="/check-code" method="POST">
->>>>>>> eecb4bb862553de14765ab5cb1c9c4febb6e35e6
                 @csrf
                 <div class="input-group flex items-center border-b border-gray-300 pb-2">
                     <i class="fas fa-lock text-gray-400 mr-3"></i>

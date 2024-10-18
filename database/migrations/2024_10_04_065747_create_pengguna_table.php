@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pengguna', function (Blueprint $table) {
-            $table->increments('id_user'); // Primary key
+            $table->id(); // Primary key
             $table->string('name', 100); // Nama Pengguna
             $table->string('description', 255); // Keterangan tentang user
             $table->string('institution', 100); // Nama institusi
             $table->date('exam_date'); // Tanggal pengerjaan ujian
-            $table->unsignedInteger('client_id')->nullable(); // Ubah menjadi nullable
+            $table->unsignedBigInteger('client_id'); // Ubah menjadi nullable
             $table->timestamps(); // Created at dan updated at
 
             // Menambahkan constraint foreign key
-            $table->foreign('client_id')->references('id_client')->on('clients')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 

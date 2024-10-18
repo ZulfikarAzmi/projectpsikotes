@@ -3,10 +3,8 @@ import { Table } from "flowbite-react";
 import { ArrowLeft } from 'lucide-react';
 import { Pencil, Trash, Plus } from 'lucide-react';
 import PopUpSoal from './component/popUp_soal';
-<<<<<<< HEAD
-=======
+
 import { Link } from 'react-router-dom';
->>>>>>> eecb4bb862553de14765ab5cb1c9c4febb6e35e6
 
 export default function TabelSoal() {
 
@@ -18,12 +16,12 @@ export default function TabelSoal() {
 <<<<<<< HEAD
       <button className='absolute top-5 left-8'><ArrowLeft/></button>
       <h1 className='absolute top-6 text-5xl font-extrabold font-inter'>Soal</h1>
-      
-      
+
+
         <div className="overflow-x-auto w-full h-auto mx-10 my-10 max-h-[450px] overflow-y-scroll ">
         <Table>
         <Table.Head>
-        
+
         <Table.HeadCell className='bg-gray-200 w-20'>
           <button className=' text-red-700 absolute top-2'><Trash sixe={2}/></button>
         </Table.HeadCell>
@@ -36,14 +34,14 @@ export default function TabelSoal() {
       <Link to="/soal" replace>
         <button className='absolute top-5 left-8'><ArrowLeft/></button>
       </Link>
-      
+
       <h1 className='absolute top-6 text-5xl font-extrabold font-inter'>Soal</h1>
-      
-      
+
+
         <div className="overflow-x-auto w-full h-auto mx-10 my-10 max-h-[500px] overflow-y-scroll scrollbar-hide">
         <Table>
         <Table.Head>
-        
+
         <Table.HeadCell className='bg-gray-200 w-20 sticky top-0'>
           <button className=' text-red-700 absolute top-2'><Trash sixe={2}/></button>
         </Table.HeadCell>
@@ -53,7 +51,7 @@ export default function TabelSoal() {
           <Table.HeadCell className='bg-gray-200 text-center w-64 sticky top-0'>Kunci</Table.HeadCell>
           <Table.HeadCell className='bg-gray-200 w-32 text-center sticky top-0'>Actions</Table.HeadCell>
 >>>>>>> eecb4bb862553de14765ab5cb1c9c4febb6e35e6
-          
+
         </Table.Head>
         <Table.Body className="divide-y">
           <Table.Row className="bg-white border-black dark:bg-gray-800">
@@ -182,8 +180,8 @@ export default function TabelSoal() {
               <button><Pencil sixe={4}/></button>
             </Table.Cell>
           </Table.Row>
-          
-          
+
+
         </Table.Body>
 
         </Table>

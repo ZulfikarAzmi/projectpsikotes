@@ -9,63 +9,98 @@ use Illuminate\Support\Facades\Validator;
 
 class SubjectController extends Controller
 {
-    public function index()
-    {
-        // Ambil semua subjects dan hitung jumlah soal (questions) per subject
-        $subjects = Subject::with('questions')->get();
+    public function index(Request $request)
+{
+    // Ambil semua subjects dan hitung jumlah soal (questions) per subject
+    $subjects = Subject::with('questions')->get();
 
-        // Iterasi untuk menambahkan question count ke setiap subject
-        foreach ($subjects as $subject) {
-            $subject->question_count = $subject->questions->count();
-        }
-
-        return view('admin.subject.index', compact('subjects'));
+    // Iterasi untuk menambahkan question count ke setiap subject
+    foreach ($subjects as $subject) {
+        $subject->question_count = $subject->questions->count();
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'subject_name' => 'required|string|max:255',
-            'timer_hours' => 'required|integer',
-            'timer_minutes' => 'required|integer',
-            'timer_seconds' => 'required|integer',
-        ]);
-
-        Subject::create($request->all());
-        return redirect()->back()->with('success', 'Subject created successfully.');
+    // Cek apakah permintaan berasal dari API
+    if ($request->wantsJson()) {
+        return response()->json($subjects); // Mengembalikan respons JSON
     }
 
-    public function update(Request $request,$id){
-
-        if (!$request->all()) {
-            return redirect()->back()->with('error', 'Tidak ada data yang dikirimkan');
-        }
-
-        $subjects = Subject::find($id);
-        $validator = Validator::make($request->all(),[
-            'subject_name' => 'required|string|max:255',
-            'timer_hours' => 'required|integer',
-            'timer_minutes' => 'required|integer',
-            'timer_seconds' => 'required|integer',
-        ]);
+    return view('admin.subject.index', compact('subjects')); // Mengembalikan tampilan Blade
+}
 
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+public function store(Request $request)
+{
+    $request->validate([
+        'subject_name' => 'required|string|max:255',
+        'timer_hours' => 'required|integer',
+        'timer_minutes' => 'required|integer',
+        'timer_seconds' => 'required|integer',
+    ]);
 
-        if ($subjects) {
-            $validatedData = $validator->validated();
-            $subjects->update($validatedData);
-            return redirect()->back()->with('success', 'Data Berhasil Diupdate');
+    $subject = Subject::create($request->all());
+
+    if ($request->wantsJson()) {
+        return response()->json(['success' => true, 'message' => 'Subject created successfully.', 'data' => $subject], 201);
+    }
+
+    return redirect()->back()->with('success', 'Subject created successfully.');
+}
+
+
+public function update(Request $request, $id)
+{
+    $subject = Subject::find($id);
+
+    if (!$subject) {
+        if ($request->wantsJson()) {
+            return response()->json(['success' => false, 'message' => 'Data Tidak Ditemukan'], 404);
         }
         return redirect()->back()->with('error', 'Data Tidak Ditemukan');
     }
 
-    public function destroy($id)
-    {
-        $subject = Subject::findOrFail($id);
-        $subject->delete();
-        return redirect()->back()->with('success', 'Subject deleted successfully.');
+    $validator = Validator::make($request->all(), [
+        'subject_name' => 'required|string|max:255',
+        'timer_hours' => 'required|integer',
+        'timer_minutes' => 'required|integer',
+        'timer_seconds' => 'required|integer',
+    ]);
+
+    if ($validator->fails()) {
+        if ($request->wantsJson()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 422);
+        }
+        return redirect()->back()->withErrors($validator)->withInput();
     }
+
+    $validatedData = $validator->validated();
+    $subject->update($validatedData);
+
+    if ($request->wantsJson()) {
+        return response()->json(['success' => true, 'message' => 'Data Berhasil Diupdate', 'data' => $subject], 200);
+    }
+
+    return redirect()->back()->with('success', 'Data Berhasil Diupdate');
+}
+
+
+public function destroy(Request $request, $id)
+{
+    $subject = Subject::find($id);
+
+    if (!$subject) {
+        if ($request->wantsJson()) {
+            return response()->json(['success' => false, 'message' => 'Data Tidak Ditemukan'], 404);
+        }
+        return redirect()->back()->with('error', 'Data Tidak Ditemukan');
+    }
+
+    $subject->delete();
+
+    if ($request->wantsJson()) {
+        return response()->json(['success' => true, 'message' => 'Subject deleted successfully.'], 200);
+    }
+
+    return redirect()->back()->with('success', 'Subject deleted successfully.');
+}
+
 }
