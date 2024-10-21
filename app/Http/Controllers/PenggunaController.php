@@ -15,19 +15,13 @@ class PenggunaController extends Controller
             'description' => 'required|string|max:255',
             'institution' => 'required|string|max:100',
             'exam_date' => 'required|date',
-            'client_id' => 'required|integer|exists:clients,id_client', // Jika client_id diperlukan
+             // Jika client_id diperlukan
         ]);
 
         // Simpan data ke dalam tabel pengguna
-        Pengguna::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'institution' => $request->input('institution'),
-            'exam_date' => $request->input('exam_date'),
-            'client_id' => $request->input('client_id'), // Jika client_id diperlukan
-        ]);
+        Pengguna::create($request->all());
 
         // Redirect atau berikan respon sesuai kebutuhan
-        return redirect('/')->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('home')->with('success', 'Data berhasil disimpan.');
     }
 }

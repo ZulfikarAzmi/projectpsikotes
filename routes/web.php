@@ -10,17 +10,19 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PenggunaController;
 
-Route::post('/check-code', [CodeController::class, 'checkCode']);
+Route::post('/check-code', [CodeController::class, 'checkCode'])->name('check.code');
 
+use App\Http\Controllers\DashboardController;
 
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/insert-data', [DataController::class, 'store']);
+
+Route::get('/dashboard', [ClientController::class, 'index'])->name('dashboard')->middleware(['auth', 'verified']);
+
 
 // Routes with authentication and verification
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -48,10 +50,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-route::get()->group(function(){
+// route::get()->group(function(){
     
-});
+// });
 
+
+Route::patch('/client/{id_client}/status', [ClientController::class, 'toggleStatus'])->name('update.status');
 
 Route::post('/create-code', [ClientController::class, 'store'])->name('create.code');
 
@@ -59,6 +63,9 @@ Route::get('/input-data-diri', function () {
     return view('input-data-diri');
 });
 
-Route::post('/pengguna/store', [PenggunaController::class, 'store']);
+Route::post('/pengguna/store', [PenggunaController::class, 'store'])->name('pengguna.store');
+
+Route::delete('/client/{id_client}', [ClientController::class, 'destroy'])->name('delete.code');
 
 require __DIR__.'/auth.php';
+

@@ -13,9 +13,9 @@ class CodeController extends Controller
         $client = Client::where('kode', $userCode)->first();
 
         if ($client && $client->status) {
-            return redirect('/input-data-diri');
+            return view('input-data-diri');
         } else {
-            return redirect('/')->with('error', 'Kode tidak tersedia');
+            return redirect()->route('home')->with('error', 'Kode tidak tersedia');
         }
     }
 }
