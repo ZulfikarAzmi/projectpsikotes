@@ -15,7 +15,9 @@ class PenggunaController extends Controller
             'description' => 'required|string|max:255',
             'institution' => 'required|string|max:100',
             'exam_date' => 'required|date',
+
              // Jika client_id diperlukan
+            'client_id' => 'required|integer|exists:clients,id', // Jika client_id diperlukan
         ]);
 
         // Simpan data ke dalam tabel pengguna

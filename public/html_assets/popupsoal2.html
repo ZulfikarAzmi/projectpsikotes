@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PopUp Soal</title>
+  <script src="popup.js" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-800">
+  <div id="popup" class="hidden fixed inset-0 w-full h-screen bg-black bg-opacity-30 flex justify-center items-center z-50">
+    <div class="relative p-8 w-full max-w-3xl bg-white rounded-2xl shadow-lg overflow-y-auto
+      max-h-[650px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200
+      dark:scrollbar-thumb-neutral-500 dark:scrollbar-track-neutral-700">
+
+      <form id="form" class="flex flex-col space-y-8">
+        <!-- Soal Section -->
+        <div>
+          <label for="soal-upload" class="block text-base font-semibold mb-2">Soal</label>
+          <input type="file" id="soal-upload" class="file-input mb-4" />
+        </div>
+
+        <hr class="w-full h-1 bg-gray-700 dark:bg-gray-100 rounded"/>
+
+        <!-- Jawaban Section -->
+        <div>
+          <label for="jawaban-upload" class="block text-base font-semibold mb-2">Jawaban</label>
+          <div id="answers-list" class="space-y-4"></div>
+          <button id="add-answer" class="w-full h-12 bg-gray-100 border rounded-lg mt-2">+ Add New Answer</button>
+          <input type="file" id="jawaban-upload" multiple class="file-input mt-4" />
+        </div>
+
+        <hr class="w-full h-1 bg-gray-700 dark:bg-gray-100 rounded"/>
+
+        <!-- Kunci Jawaban Section -->
+        <div>
+          <label for="kunci-upload" class="block text-base font-semibold mb-2">Kunci Jawaban</label>
+          <input type="file" id="kunci-upload" class="file-input" />
+        </div>
+
+        <hr class="w-full h-1 bg-gray-700 dark:bg-gray-100 rounded"/>
+
+        <!-- Actions -->
+        <div class="flex justify-between">
+          <button type="button" id="cancel" class="bg-gray-400 w-24 h-8 rounded">Batal</button>
+          <button type="submit" class="bg-black text-white w-24 h-8 rounded">Tambah</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("popup");
+        const form = document.getElementById("form");
+        const addAnswerBtn = document.getElementById("add-answer");
+        const answersList = document.getElementById("answers-list");
+        const cancelBtn = document.getElementById("cancel");
+
+        let answers = [];
+
+        // Show popup
+        popup.classList.remove("hidden");
+
+        // Add new answer input dynamically
+        addAnswerBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const answerIndex = answers.length;
+
+          const answerDiv = document.createElement("div");
+          answerDiv.classList.add("flex", "space-x-2", "items-center");
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.classList.add("rounded-lg", "flex-grow", "p-2", "border");
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Cancel";
+          deleteBtn.classList.add("bg-red-500", "text-white", "px-4", "rounded");
+
+          deleteBtn.addEventListener("click", () => {
+            answersList.removeChild(answerDiv);
+            answers.splice(answerIndex, 1);
+          });
+
+          answerDiv.appendChild(input);
+          answerDiv.appendChild(deleteBtn);
+          answersList.appendChild(answerDiv);
+
+          answers.push(input);
+        });
+
+        // Handle form submission
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const soalFile = document.getElementById("soal-upload").files[0];
+          const jawabanFiles = Array.from(document.getElementById("jawaban-upload").files);
+          const kunciFile = document.getElementById("kunci-upload").files[0];
+
+          const newItem = {
+            no: Math.floor(Math.random() * 1000),
+            soal: soalFile ? soalFile.name : "",
+            jawaban: jawabanFiles.map(file => file.name),
+            kunci_jawaban: kunciFile ? kunciFile.name : ""
+          };
+
+          console.log("Data submitted:", newItem);
+
+          // Close popup
+          popup.classList.add("hidden");
+        });
+
+        // Cancel button
+        cancelBtn.addEventListener("click", () => {
+          popup.classList.add("hidden");
+        });
+      });
+
+  </script>
+</body>
+</html>

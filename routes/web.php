@@ -10,7 +10,11 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PenggunaController;
 
+
 Route::post('/check-code', [CodeController::class, 'checkCode'])->name('check.code');
+
+// Route::post('/check-code', [CodeController::class, 'checkCode']);
+
 
 use App\Http\Controllers\DashboardController;
 
@@ -59,13 +63,22 @@ Route::patch('/client/{id_client}/status', [ClientController::class, 'toggleStat
 
 Route::post('/create-code', [ClientController::class, 'store'])->name('create.code');
 
-Route::get('/input-data-diri', function () {
-    return view('input-data-diri');
-});
+// route::get()->group(function(){
+
+// });
 
 Route::post('/pengguna/store', [PenggunaController::class, 'store'])->name('pengguna.store');
 
 Route::delete('/client/{id_client}', [ClientController::class, 'destroy'])->name('delete.code');
+
+
+// Route::post('/create-code', [ClientController::class, 'store'])->name('create.code');
+
+// Route::get('/input-data-diri', function () {
+//     return view('input-data-diri');
+// });
+
+// Route::post('/pengguna/store', [PenggunaController::class, 'store']);
 
 require __DIR__.'/auth.php';
 

@@ -68,6 +68,31 @@
                 <div class="mb-6">
                     <label for="kode" class="block text-black-700 dark:text-gray-200 font-semibold">Kode:</label>
                     <input type="text" name="kode" id="kode" class="mt-1 block w-full px-4 py-3 border border-blue-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none text-black dark:text-white bg-white dark:bg-gray-700" required>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form method="POST" action="#">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="kode" class="block text-gray-700">Kode:</label>
+                            <input type="text" name="kode" id="kode" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 text-black" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="status" class="block text-gray-700">Status:</label>
+                            <select name="status" id="status" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 text-black" required>
+                                <option value="1">Aktif</option>
+                                <option value="0">Tidak Aktif</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Buat Kode</button>
+                    </form>
+
+                    @if (session('success'))
+                        <div class="mt-4 p-2 bg-green-500 text-white">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </div>
 
                 <div class="mb-6">
@@ -137,7 +162,7 @@
             </div>
         </div>
     </div>
-
     @vite('resources/js/app.js')
 </body>
 </html>
+

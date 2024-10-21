@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id_client'); // Primary key
-            $table->string('kode', 20)->unique(); // Unique Code untuk login
-            $table->boolean('status')->default(false); // Status (Aktif/Tidak Aktif)
+            $table->id(); // Primary key
+            $table->string('kode')->unique(); // Unique Code untuk login
+            $table->boolean('status')->default(0); // Status (Aktif/Tidak Aktif)
             $table->timestamps(); // Created at dan updated at
         });
     }

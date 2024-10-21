@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Soal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .checkbox-custom {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center h-screen bg-white relative">
+
+  <a href="/soal" class="absolute top-5 left-8">
+    <button>
+      <i icon-name="arrow-left"></i>
+    </button>
+  </a>
+
+  <h1 class="absolute top-6 text-5xl font-extrabold font-inter">Soal</h1>
+
+  <div class="container border-2 w-full h-auto border-gray-400 mx-10 my-10 rounded-lg z-20 relative">
+    <div class="overflow-x-auto max-h-[450px] overflow-y-scroll scrollbar-hide">
+      <table class="w-full table-auto">
+        <thead class="sticky top-0 bg-gray-200">
+          <tr>
+            <th class="w-20">
+              <button id="deleteSelected" class="text-red-700" disabled>
+                <i icon-name="trash" size="24"></i>
+              </button>
+            </th>
+            <th class="w-20 text-center">No</th>
+            <th class="w-64 text-center">Soal</th>
+            <th class="w-64 text-center">Jawaban</th>
+            <th class="w-64 text-center">Kunci</th>
+            <th class="w-32 text-center">Edit</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" class="bg-white">
+          <!-- Baris Data dengan Tema Cerah -->
+          <tr class="bg-blue-100 hover:bg-blue-200 transition-colors duration-300">
+            <td class="text-center">
+              <input type="checkbox" class="checkbox-custom rounded" onchange="handleCheckboxChange(1)">
+            </td>
+            <td class="text-center font-medium">1</td>
+            <td class="text-center">
+              <img src="/images/soal1.png" alt="Soal 1" class="max-w-[80px] mx-auto">
+            </td>
+            <td class="text-center flex justify-center space-x-2">
+              <img src="/images/jawaban1a.png" alt="Jawaban 1-1" class="max-w-[42px]">
+              <img src="/images/jawaban1b.png" alt="Jawaban 1-2" class="max-w-[42px]">
+            </td>
+            <td class="text-center">
+              <img src="/images/kunci1.png" alt="Kunci Jawaban 1" class="max-w-[80px] mx-auto">
+            </td>
+            <td class="text-center">
+              <button><i icon-name="pencil" size="24"></i></button>
+            </td>
+          </tr>
+
+          <tr class="bg-blue-100 hover:bg-blue-200 transition-colors duration-300">
+            <td class="text-center">
+              <input type="checkbox" class="checkbox-custom rounded" onchange="handleCheckboxChange(2)">
+            </td>
+            <td class="text-center font-medium">2</td>
+            <td class="text-center">
+              <img src="/images/soal2.png" alt="Soal 2" class="max-w-[80px] mx-auto">
+            </td>
+            <td class="text-center flex justify-center space-x-2">
+              <img src="/images/jawaban2a.png" alt="Jawaban 2-1" class="max-w-[42px]">
+              <img src="/images/jawaban2b.png" alt="Jawaban 2-2" class="max-w-[42px]">
+            </td>
+            <td class="text-center">
+              <img src="/images/kunci2.png" alt="Kunci Jawaban 2" class="max-w-[80px] mx-auto">
+            </td>
+            <td class="text-center">
+              <button><i icon-name="pencil" size="24"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <button id="addSoal" class="flex w-40 h-10 px-2 bg-gray-300 items-center justify-center rounded-xl absolute bottom-6 left-10">
+      <i icon-name="plus"></i>
+      <span>Tambahkan Soal</span>
+    </button>
+
+    <button type="submit" class="w-32 h-10 px-2 bg-gray-300 items-center justify-center rounded-xl absolute bottom-6 right-10">
+      Selesai
+    </button>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const deleteSelectedButton = document.getElementById('deleteSelected');
+    let selectedItems = [];
+
+    function handleCheckboxChange(itemNo) {
+      if (selectedItems.includes(itemNo)) {
+        selectedItems = selectedItems.filter(no => no !== itemNo);
+      } else {
+        selectedItems.push(itemNo);
+      }
+      deleteSelectedButton.disabled = selectedItems.length === 0;
+    }
+
+    deleteSelectedButton.addEventListener('click', () => {
+      selectedItems.forEach(no => {
+        console.log(`Deleting item no: ${no}`); // Ganti dengan fungsi DELETE ke server
+      });
+      selectedItems = [];
+      deleteSelectedButton.disabled = true;
+    });
+
+    document.getElementById('addSoal').addEventListener('click', () => {
+      alert('Pop-up Tambahkan Soal akan muncul di sini.');
+    });
+  </script>
+</body>
+</html>
